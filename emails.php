@@ -3,9 +3,9 @@ include "connection.php";
 
 $strsql = "
 select *  from emails where (
-upper(sender) like '%" . pg_escape_string($_REQUEST['term']) . "%' or 
+position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(sender)) > 0 or 
 
-upper(unnest(addresses)) like upper('%" . pg_escape_string($_REQUEST['term']) . "%') or
+position(upper('" . pg_escape_string($_REQUEST['term']) . "' in upper(addresses)) > 0 or
 
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(subject)) > 0 or  
 
@@ -15,7 +15,7 @@ position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(body)) > 
 ";
 
 if($_REQUEST['from'] != "") {
-	$strsql .= " and received::date between '" . $_REQUEST['from'] . "' and '" . $_REQUEST['to'] . "' ";
+	$strsql .= " and received::date between '" . $_REQUEST['from'] . "'::date and '" . $_REQUEST['to'] . "'::date ";
 }
 
 //echo $strsql;
