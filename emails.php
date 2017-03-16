@@ -21,8 +21,9 @@ if($_REQUEST['from'] != "") {
 //echo $strsql;
 
 $res = pg_query($con, $strsql);
+$arr = pg_fetch_all($res);
 ?>
-<table summary="" class="table table-striped">
+<table summary="" class="table table-striped table-condensed">
 	<thead>
 			<tr>
 				<th>Date</th>			
@@ -41,7 +42,7 @@ $res = pg_query($con, $strsql);
 		</tr>
 		<?php
 	} else {
-		while($row = pg_fetch_assoc($res)) {
+		foreach ($row as $arr) {
 		?>
 		<tr>
 			<td><?php echo $row['received']; ?></td>	
