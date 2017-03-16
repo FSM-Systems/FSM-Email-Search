@@ -2,7 +2,7 @@
 include "connection.php";
 
 $strsql = "
-select id, subject, body, sender, addresses, to_char(received, 'dd/mm/yyyy @ hh24:mi')  from emails where (
+select id, subject, body, sender, addresses, to_char(received, 'dd/mm/yyyy @ hh24:mi') as received from emails where (
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(sender)) > 0 or 
 
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(addresses)) > 0 or
@@ -49,7 +49,7 @@ $res = pg_query($con, $strsql);
 			<td><?php echo $row['sender']; ?></td>	
 			<td><?php echo $row['addresses']; ?></td>	
 			<td><?php echo $row['subject']; ?></td>	
-			<td><button type="button" class="btn btn-sm btn-warn" dbid="<?php echo $row['id']; ?>">VIEW CONTENT</button></td>	
+			<td><button type="button" class="btn btn-sm btn-danger" dbid="<?php echo $row['id']; ?>">VIEW CONTENT</button></td>	
 		</tr>
 		<?php	
 		}
