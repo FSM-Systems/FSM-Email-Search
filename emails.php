@@ -2,10 +2,10 @@
 include "connection.php";
 
 $strsql = "
-select * from emails where (
+select *, unnest(addresses) as addr from emails where (
 upper(sender) like '%" . $_REQUEST['term'] . "%' or 
 
-upper(unnest(addresses)) like '%" . $_REQUEST['term'] . "%' or
+upper(addr) like '%" . $_REQUEST['term'] . "%' or
 
 position(upper('" . $_REQUEST['term'] . "') in subject) > 0 or  
 
