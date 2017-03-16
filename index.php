@@ -20,6 +20,8 @@
 
 	<link rel="stylesheet" href="style.css" />
 	
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	
 </head>
 <body>
 	<img src="logo.png" alt="" class="logo">
@@ -32,25 +34,56 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10 text-center">
-				<form class="form form-inline" style="width: 100%">
-					<input type="text" id="term" class="form-control input-sm" style="width: 300px;" placeholder="Type in email address or text to find" />
+				<form id="frm" class="form form-inline" style="width: 100%">
+					<input type="text" id="term" class="form-control input-sm" style="width: 300px;" placeholder="Type in email address or text to find" required />
+					<input type="text" id="from" class="form-control input-sm datepicker" placeholder="From" />
+					<input type="text" id="to" class="form-control input-sm datepicker" placeholder="To" />
 					<button type="button" class="btn btn-sm btn-warning">SEARCH</button>
 					<button type="button" class="btn btn-sm btn-info">CLEAR</button>
 				</form>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
-		<div class="row" id="workspace">
-		
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id="workspace">
+			
+			</div>
+			<div class="col-md-1"></div>
 		</div>	
 	</div>
 	<script type="text/javascript" >
 		$(document).ready(function () {
+			jQuery.validator.setDefaults({
+				errorClass: 'customerror',
+				errorPlacement: function(error,element) {
+					return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
+				}
+			});
+			$(".datepicker").datepicker({
+				dateFormat: 'dd/mm/yy'			
+			});
+	
+			$("#term").focus()			
+			
 			$(".btn-info").click(function () {
-				$("#workspace").empty()
+				$("#workspace").empty();
+				$("input[type=text]").val("")
+				$("#term").focus();
 			})
+			
 			$(".btn-warning").click(function () {
-				$("#workspace").empty().load("emails.php?term=" + $("#term").val());
+				$("#frm").validate()
+				// Check if oe date is segt then the other has to be too
+				var blngo = true;
+				if (($("#from").val().length > 0 && $("#to").val().length == 0)  || ($("#from").val().length == 0 && $("#to").val().length > 0)) {
+					blngo = false;
+				}
+				if ($("#frm").valid() == true && blngo == true) {
+					$("#workspace").empty().load("emails.php?term=" + $("#term").val() + "&from=" + $("#from").val() + "&to=" + $("#to").val());	
+				} else {
+					alert('YOU HAVE SELECTED ONLY ONE DATE. PLEASE SET ALSO THE SECOND ONE!')
+				}
 			})
 		})
 	</script>

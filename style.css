@@ -7,3 +7,11 @@ body, input {
 	left: 0;
 	top: 0;
 }
+
+/* Error handling CSS */
+.customerror {
+	border-color: red;
+	border-width: 2px;
+	background-color: #ffcccf;
+	font-weight: bold;
+}
