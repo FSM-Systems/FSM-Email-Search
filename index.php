@@ -35,7 +35,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10 text-center">
 				<form id="frm" class="form form-inline" style="width: 100%">
-					<input type="text" id="term" class="form-control input-sm" style="width: 300px;" placeholder="Type in email address or text to find" />
+					<input type="text" id="term" class="form-control input-sm" style="width: 300px;" placeholder="Type in email address or text to find" required />
 					<input type="text" id="from" class="form-control input-sm datepicker" placeholder="From" required />
 					<input type="text" id="to" class="form-control input-sm datepicker" placeholder="To" required />
 					<button type="button" class="btn btn-sm btn-warning">SEARCH</button>
@@ -76,8 +76,6 @@
 				$("#frm").validate()
 				if ($("#frm").valid() == true) {
 					$("#workspace").empty().load("emails.php?term=" + $("#term").val() + "&from=" + $("#from").val() + "&to=" + $("#to").val());	
-				} else {
-					alert('YOU HAVE SELECTED ONLY ONE DATE. PLEASE SET ALSO THE SECOND ONE!')
 				}
 			})
 		})
