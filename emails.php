@@ -49,7 +49,7 @@ $res = pg_query($con, $strsql);
 			<td><?php echo $row['sender']; ?></td>	
 			<td><?php echo $row['addresses']; ?></td>	
 			<td><?php echo $row['subject']; ?></td>	
-			<td><button type="button" class="btn btn-sm btn-danger" dbid="<?php echo $row['id']; ?>">VIEW CONTENT</button></td>	
+			<td><button type="button" id="det" class="btn btn-sm btn-danger" dbid="<?php echo $row['id']; ?>">VIEW CONTENT</button></td>	
 		</tr>
 		<?php	
 		}
@@ -57,3 +57,10 @@ $res = pg_query($con, $strsql);
 	?>
 	</tbody>
 </table>
+<script type="text/javascript" >
+	$(document).ready(function () {
+		$("#det").click(function () {
+			$(".detail").fadeIn().load("read.php?id=" $(this).attr("dbid"));
+		})
+	})
+</script>

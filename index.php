@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Email Database</title>
+	<link rel="shortcut icon" type="image/png" href="/favicon.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
 	<!-- Latest compiled and minified CSS -->
@@ -52,6 +54,9 @@
 			<div class="col-md-1"></div>
 		</div>	
 	</div>
+	<div class="detail">
+	
+	</div>
 	<script type="text/javascript" >
 		$(document).ready(function () {
 			jQuery.validator.setDefaults({
@@ -64,7 +69,7 @@
 				dateFormat: 'dd/mm/yy'			
 			});
 	
-			$("#term").focus()			
+			$("#term").focus();
 			
 			$(".btn-info").click(function () {
 				$("#workspace").empty();
