@@ -5,7 +5,7 @@ $strsql = "
 select *  from emails where (
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(sender)) > 0 or 
 
-position(upper('" . pg_escape_string($_REQUEST['term']) . "' in upper(addresses)) > 0 or
+position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(addresses)) > 0 or
 
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(subject)) > 0 or  
 
@@ -20,7 +20,7 @@ if($_REQUEST['from'] != "") {
 
 //echo $strsql;
 
-$res - pg_query($con, $strsql);
+$res = pg_query($con, $strsql);
 ?>
 <table summary="" class="table table-striped">
 	<thead>
