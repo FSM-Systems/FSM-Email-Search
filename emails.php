@@ -2,7 +2,7 @@
 include "connection.php";
 
 $strsql = "
-select *  from emails where (
+select is, subject, body, sender, addresses, to_char(received, 'dd/mm/yyyy @ hh24:mi')  from emails where (
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(sender)) > 0 or 
 
 position(upper('" . pg_escape_string($_REQUEST['term']) . "') in upper(addresses)) > 0 or
