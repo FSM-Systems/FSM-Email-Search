@@ -50,7 +50,7 @@
 				$("#workspace").empty()
 			})
 			$(".btn-warning").click(function () {
-				$("#workspace").empty().load("email.php?term=" + $("#term").val());
+				$("#workspace").empty().load("emails.php?term=" + $("#term").val());
 			})
 		})
 	</script>
