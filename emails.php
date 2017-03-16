@@ -18,6 +18,8 @@ if($_REQUEST['from'] != "") {
 	$strsql .= " and received::date between '" . $_REQUEST['from'] . "' and '" . $_REQUEST['to'] . "' ";
 }
 
+echo $strsql;
+
 $res - pg_query($con, $strsql);
 ?>
 <table summary="" class="table table-striped">
