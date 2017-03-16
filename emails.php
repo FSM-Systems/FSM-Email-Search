@@ -5,11 +5,11 @@ $strsql = "
 select *, unnest(addresses) as addr from emails where (
 upper(sender) like '%" . $_REQUEST['term'] . "%' or 
 
-upper(addr) like '%" . $_REQUEST['term'] . "%' or
+upper(addr) like upper('%" . $_REQUEST['term'] . "%') or
 
-position(upper('" . $_REQUEST['term'] . "') in subject) > 0 or  
+position(upper('" . $_REQUEST['term'] . "') in upper(subject)) > 0 or  
 
-position(upper('" . $_REQUEST['term'] . "') in body) > 0
+position(upper('" . $_REQUEST['term'] . "') in upper(body)) > 0
 
 )
 ";
@@ -18,7 +18,7 @@ if($_REQUEST['from'] != "") {
 	$strsql .= " and received::date between '" . $_REQUEST['from'] . "' and '" . $_REQUEST['to'] . "' ";
 }
 
-echo $strsql;
+//echo $strsql;
 
 $res - pg_query($con, $strsql);
 ?>
