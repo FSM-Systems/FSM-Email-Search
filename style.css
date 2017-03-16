@@ -1,0 +1,9 @@
+body, input {
+	font-family: 'Raleway', sans-serif;
+}
+
+.logo {
+	position: fixed;
+	left: 0;
+	top: 0;
+}
