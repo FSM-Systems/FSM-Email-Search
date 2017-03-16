@@ -60,7 +60,9 @@ $res = pg_query($con, $strsql);
 <script type="text/javascript" >
 	$(document).ready(function () {
 		$("#det").click(function () {
-			$(".detail").fadeIn().load("read.php?id=" $(this).attr("dbid"));
+			$(".detail").load("read.php?id=" $(this).attr("dbid"), function () {
+				$(this).fadeIn();
+			});
 		})
 	})
 </script>
