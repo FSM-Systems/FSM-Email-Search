@@ -76,9 +76,13 @@
 				$("#frm").validate()
 				// Check if oe date is segt then the other has to be too
 				var blngo = true;
-				if (($("#from").val().length > 0 && $("#to").val().length == 0)  || ($("#from").val().length == 0 && $("#to").val().length > 0)) {
-					blngo = false;
+				
+				if ($("#term").val().length > 0) {
+					if (($("#from").val().length > 0 && $("#to").val().length == 0)  || ($("#from").val().length == 0 && $("#to").val().length > 0)) {
+						blngo = false;
+					}	
 				}
+				
 				if ($("#frm").valid() == true && blngo == true) {
 					$("#workspace").empty().load("emails.php?term=" + $("#term").val() + "&from=" + $("#from").val() + "&to=" + $("#to").val());	
 				} else {
